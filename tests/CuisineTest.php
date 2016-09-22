@@ -1,19 +1,21 @@
 <?php
-/**
-*@backupGlobals disabled
-*@backupStaticAttributes disabled
-*/
-  require_once "src/Cuisine.php";
-  $server = 'mysql:host=localhost:8889;dbname=cuisine';
-  $username = 'root';
-  $password = 'root';
-  $DB = new PDO($server, $username, $password);
+    /**
+    *@backupGlobals disabled
+    *@backupStaticAttributes disabled
+    */
+
+    require_once "src/Cuisine.php";
+    $server = 'mysql:host=localhost:8889;dbname=cuisine_restaurant';
+    $username = 'root';
+    $password = 'root';
+    $DB = new PDO($server, $username, $password);
 
     class CuisineTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
         {
             Cuisine::deleteAll();
+            Restaurant::deleteAll();
         }
 
         function testSave()
@@ -30,7 +32,6 @@
             $cuisines_in_db = Cuisine::getAll();
             $result = $cuisines_in_db[0];
             $this->assertEquals($expected_output, $result);
-            $this->tearDown();
         }
 
         function testGetAll()
@@ -53,7 +54,7 @@
 
             //assertEquals
             $this->assertEquals($expected_output, $result);
-            $this->tearDown();
+            // $this->tearDown();
         }
 
         function testDeleteAll()
@@ -76,7 +77,7 @@
 
             //Asserts
             $this->assertEquals($expected_output, $result);
-            $this->tearDown();
+            // $this->tearDown();
         }
 
     }

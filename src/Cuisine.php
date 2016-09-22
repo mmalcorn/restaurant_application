@@ -4,6 +4,7 @@
     {
         private $name;
         private $id;
+
         function __construct($name, $id=null)
         {
             $this->name = $name;
@@ -65,10 +66,16 @@
             {
                 $current_id = $cuisines[$cuisine_index]->getId();
                 if ($current_id === $search_id) {
-                    return $cuisines[$cuisine_index]
+                    return $cuisines[$cuisine_index];
                 }
             }
+            if (!$found_cuisine)
+            {
+                print("Could not find cuisine with id:" . $search_id . "\n");
+            }
+            return $found_cuisine;
         }
+
     }
 
 
